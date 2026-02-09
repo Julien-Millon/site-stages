@@ -1,0 +1,335 @@
+/* ==========================================================================
+   SQUELETTE / WIREFRAME CSS
+   Mode "Fil de fer" pour validation de structure.
+   Police par défaut, sans textures, contrastes simples.
+   ========================================================================== */
+
+/* --- 1. CONFIGURATION DE BASE (Variables simplifiées) --- */
+:root {
+    --wireframe-black: #000000;
+    --wireframe-gray: #CCCCCC;
+    --wireframe-light: #F0F0F0;
+    --wireframe-white: #FFFFFF;
+    
+    /* On garde les tailles pour la structure */
+    --header-height: 72px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif; /* Police système par défaut */
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--wireframe-black);
+    background-color: var(--wireframe-white);
+}
+
+a {
+    text-decoration: underline;
+    color: var(--wireframe-black);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    background: var(--wireframe-gray); /* Placeholder visuel */
+    opacity: 0.8;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* --- 2. UTILITAIRES DE LAYOUT (A NE PAS TOUCHER) --- */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.grid {
+    display: grid;
+    gap: 24px;
+}
+/* Conservation des colonnes pour la mise en page */
+.grid-2 { grid-template-columns: 1fr; }
+.grid-3 { grid-template-columns: 1fr; }
+.grid-4 { grid-template-columns: 1fr; }
+
+@media (min-width: 640px) {
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+.section { padding: 60px 0; border-bottom: 1px dashed var(--wireframe-gray); }
+.section-header { text-align: center; margin-bottom: 40px; }
+.section-title { font-size: 2rem; font-weight: bold; text-transform: uppercase; }
+.section-subtitle { font-size: 1.1rem; color: #555; }
+
+/* --- 3. COMPOSANTS GÉNÉRIQUES (BOUTONS, INPUTS) --- */
+
+/* Boutons : Simples rectangles avec bordure */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 2px solid var(--wireframe-black);
+    background: var(--wireframe-white);
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background: var(--wireframe-black);
+    color: var(--wireframe-white);
+}
+
+.btn-primary { background: var(--wireframe-black); color: var(--wireframe-white); }
+.btn-block { width: 100%; display: flex; }
+
+/* Formulaires : Champs très visibles */
+.form-group { margin-bottom: 15px; }
+.form-label { display: block; margin-bottom: 5px; font-weight: bold; }
+.form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--wireframe-black);
+    background: var(--wireframe-white);
+    border-radius: 0; /* Pas d'arrondi */
+    font-family: inherit;
+}
+
+/* Cards : Contours simples */
+.card {
+    border: 1px solid var(--wireframe-black);
+    padding: 20px;
+    background: var(--wireframe-white);
+}
+.card-header, .card-footer { display: flex; justify-content: space-between; align-items: center; }
+.card-image {
+    height: 150px;
+    background-color: var(--wireframe-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed var(--wireframe-black);
+    margin-bottom: 15px;
+}
+
+/* Tags & Badges */
+.tag {
+    display: inline-block;
+    border: 1px solid var(--wireframe-black);
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    margin-right: 5px;
+}
+.badge {
+    background: var(--wireframe-black);
+    color: white;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    border-radius: 50%;
+}
+
+/* --- 4. HEADER & NAVIGATION --- */
+.header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--header-height);
+    background: var(--wireframe-white);
+    border-bottom: 2px solid var(--wireframe-black);
+    z-index: 1000;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo { font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+.logo-icon { width: 40px; height: 40px; background: var(--wireframe-black); } /* Placeholder logo */
+
+.nav-desktop ul { display: flex; gap: 20px; }
+.nav-link { text-decoration: none; font-weight: bold; }
+.nav-link.active { text-decoration: underline; }
+
+.header-actions { display: flex; gap: 10px; align-items: center; }
+.mobile-nav { display: none; } /* On cache le menu mobile par défaut sur desktop */
+
+/* Burger Menu */
+.burger-menu {
+    width: 40px; height: 40px;
+    border: 1px solid var(--wireframe-black);
+    display: flex; flex-direction: column; 
+    justify-content: center; align-items: center; gap: 4px;
+}
+.burger-menu span { width: 20px; height: 2px; background: black; }
+
+@media (max-width: 768px) {
+    .nav-desktop { display: none; }
+    .mobile-nav.active {
+        display: block; position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+        background: white; padding: 20px; border-top: 1px solid black;
+    }
+}
+
+/* --- 5. PAGES SPÉCIFIQUES & SECTIONS --- */
+
+/* Page Login */
+.login-page {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--wireframe-light); /* Fond gris léger pour distinguer la page */
+}
+.login-container {
+    width: 100%; max-width: 400px;
+    border: 2px solid var(--wireframe-black);
+    background: white;
+    padding: 40px;
+}
+
+/* Hero Section (Bandeau principal) */
+.hero {
+    background: var(--wireframe-light);
+    border-bottom: 2px solid var(--wireframe-black);
+    padding: 80px 20px;
+    text-align: center;
+}
+.hero-title { font-size: 2.5rem; margin-bottom: 20px; }
+.hero-subtitle { font-size: 1.25rem; margin-bottom: 40px; color: #444; }
+
+/* Search Box */
+.search-box {
+    border: 2px solid var(--wireframe-black);
+    padding: 20px;
+    background: white;
+    margin-top: 20px;
+}
+.search-box-inline { display: flex; gap: 10px; flex-wrap: wrap; }
+.search-box-inline .form-group { flex: 1; margin: 0; }
+
+/* Stats Carousel */
+.stats-carousel {
+    border: 1px dashed var(--wireframe-black);
+    padding: 20px; margin: 20px 0;
+}
+.carousel-container { display: flex; align-items: center; gap: 20px; }
+.carousel-content {
+    flex: 1; text-align: center;
+    border: 1px solid var(--wireframe-black);
+    padding: 20px;
+}
+.stat-number { font-size: 2.5rem; font-weight: bold; }
+
+/* Offer Cards (Offres d'emploi) */
+.offer-card {
+    border: 1px solid var(--wireframe-black);
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+.offer-card:hover { background: var(--wireframe-light); }
+.offer-card-header { display: flex; justify-content: space-between; }
+.offer-image { height: 100px; background: var(--wireframe-gray); margin: 10px 0; }
+
+/* Page Détail */
+.detail-header {
+    border: 2px solid var(--wireframe-black);
+    padding: 30px; margin-bottom: 30px;
+    background: var(--wireframe-light);
+}
+.detail-meta { display: flex; gap: 20px; border-top: 1px solid black; padding-top: 15px; margin-top: 15px; }
+.detail-section { margin-bottom: 30px; border-left: 4px solid var(--wireframe-black); padding-left: 20px; }
+
+/* Sticky Footer (Bouton postuler en bas) */
+.sticky-footer {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: white; border-top: 2px solid black;
+    padding: 15px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+/* Tableaux (Dashboard) */
+.table-container { overflow-x: auto; border: 1px solid black; }
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td {
+    border: 1px solid var(--wireframe-black);
+    padding: 10px; text-align: left;
+}
+.table th { background: var(--wireframe-light); font-weight: bold; }
+
+/* Status (Badges d'état) */
+.status {
+    border: 1px solid black;
+    padding: 2px 8px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+/* Différenciation par texte uniquement ou fond gris */
+.status-pending { background: #fff; }
+.status-accepted { background: #ddd; }
+.status-rejected { text-decoration: line-through; }
+
+/* Modal */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 2000;
+    /* Active via JS ou classe .active */
+    visibility: hidden; opacity: 0; 
+}
+.modal-overlay.active { visibility: visible; opacity: 1; }
+
+.modal {
+    width: 500px; max-width: 90%;
+    border: 4px solid var(--wireframe-black);
+    background: white;
+    box-shadow: none;
+}
+.modal-header { border-bottom: 1px solid black; padding: 15px; font-weight: bold; }
+.modal-body { padding: 20px; }
+.modal-footer { border-top: 1px solid black; padding: 15px; text-align: right; }
+
+/* Footer du site */
+.footer {
+    border-top: 4px solid var(--wireframe-black);
+    padding: 40px 0;
+    background: var(--wireframe-light);
+    margin-top: 60px;
+}
+.footer-content { display: flex; gap: 40px; flex-wrap: wrap; }
+.footer-column h4 { text-transform: uppercase; border-bottom: 1px solid black; padding-bottom: 10px; margin-bottom: 15px; }
+
+/* --- 6. AJUSTEMENTS POUR LE CONTENU PRINCIPAL --- */
+.main-content {
+    padding-top: calc(var(--header-height) + 40px);
+    min-height: 80vh;
+}
+
+/* Visibilité responsive simple */
+.hide-mobile { display: none; }
+@media (min-width: 768px) {
+    .hide-mobile { display: block; }
+    .hide-desktop { display: none; }
+}
